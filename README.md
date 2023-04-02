@@ -35,8 +35,5 @@ You can also set the color transparency passing to `--color` a fourth value from
 python enhanced_qr.py --url  'your_url_here' --bg /path/to/your/image.png --color 255 255 255 100
 ```
 
-## TL;DR
-To improve the quality of the generated QR the script add a `?padding=` param to the url, change the script according to your needs if this is annoying.
-
 ## Acknowledgement
 This is only a simple script that uses a very powerful library [python-qrcode](https://github.com/lincolnloop/python-qrcode) say thanks to the community.
