@@ -12,6 +12,7 @@ First of all clone the repo and install the requirements:
 ``` shell
 git clone https://github.com/ZappaBoy/enhanced-qr.git
 cd enhanced-qr
+# Probably you want to create a virtual environment first
 pip install -r requirements.txt
 ```
 
@@ -22,18 +23,43 @@ python enhanced_qr.py --url 'your_url_here'
 
 Alternatively you can use define the path of the image you want to use as background:
 ``` shell
-python enhanced_qr.py --url 'your_url_here' --bg /path/to/your/image.png
+python enhanced_qr.py --bg /path/to/your/image.png
 ```
 
-Finally you can also define the background color of the image in RGB format:
+Finally, you can also define the background color of the image in RGB format:
+
 ``` shell
-python enhanced_qr.py --url  'your_url_here' --bg /path/to/your/image.png --color 255 255 255
+python enhanced_qr.py --color 255 255 255
 ```
 
 You can also set the color transparency passing to `--color` a fourth value from 0 to 255
+
 ``` shell
-python enhanced_qr.py --url  'your_url_here' --bg /path/to/your/image.png --color 255 255 255 100
+python enhanced_qr.py --color 255 255 255 100
+```
+
+You can adjust the quality of the QR code by passing a value from 1 to 40 to `--quality`:
+
+``` shell
+python enhanced_qr.py --quality 30
+```
+
+## Options
+
+```shell
+> python enhanced_qr.py --help
+usage: enhanced_qr.py [-h] [--url URL] [--bg BG] [--color COLOR [COLOR ...]] [--quality QUALITY]
+
+options:
+  -h, --help            show this help message and exit
+  --url URL             URL to generate QR code for
+  --bg BG               Path to background image
+  --color COLOR [COLOR ...]
+                        Background color (RGB) or (RGBA)
+  --quality QUALITY     Quality of QR code (1-40)
 ```
 
 ## Acknowledgement
-This is only a simple script that uses a very powerful library [python-qrcode](https://github.com/lincolnloop/python-qrcode) say thanks to the community.
+
+This is only a simple script that uses a very powerful
+library [python-qrcode](https://github.com/lincolnloop/python-qrcode) say thanks to the community.

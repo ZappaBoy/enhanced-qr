@@ -1,5 +1,6 @@
 import argparse
 import os
+from typing import Union
 
 import qrcode
 from qrcode.image.styledpil import StyledPilImage
@@ -12,14 +13,17 @@ generated_image_path = os.path.join(dir_path, 'generated.png')
 default_url = 'https://justanotherdomain.dev/'
 default_embedded_image_path = os.path.join(dir_path, 'background.png')
 default_back_color = (13, 19, 33)
+default_quality = 30
 
 
 class EnhancedQR:
 
     @staticmethod
-    def generate(content=default_url, image_path=default_embedded_image_path, back_color=default_back_color):
+    def generate(content: str = default_url, image_path: str = default_embedded_image_path,
+                 back_color: Union[tuple[int, int, int], tuple[int, int, int, int]] = default_back_color,
+                 version: int = default_quality):
         print('Generating: ', content)
-        qr = qrcode.QRCode(version=30, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
+        qr = qrcode.QRCode(version=quality, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
         qr.add_data(content)
         qr.make()
         img = qr.make_image(image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer(),
@@ -29,14 +33,20 @@ class EnhancedQR:
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--url', type=str, required=False, default=default_url)
-    parser.add_argument('--bg', type=str, required=False, default=default_embedded_image_path)
-    parser.add_argument('--color', nargs='+', type=int, required=False, default=default_back_color)
+    parser.add_argument('--url', type=str, required=False, default=default_url,
+                        help='URL to generate QR code for')
+    parser.add_argument('--bg', type=str, required=False, default=default_embedded_image_path,
+                        help='Path to background image')
+    parser.add_argument('--color', nargs='+', type=int, required=False, default=default_back_color,
+                        help='Background color (RGB) or (RGBA)')
+    parser.add_argument('--quality', type=int, required=False, default=default_quality,
+                        help='Quality of QR code (1-40)')
 
     args = parser.parse_args()
     link = args.url
     background_image_path = os.path.abspath(args.bg)
     color = tuple(args.color)
+    quality = args.quality if 1 <= args.quality <= 40 else default_quality
 
     enhanced_qr = EnhancedQR()
-    enhanced_qr.generate(link, background_image_path, color)
+    enhanced_qr.generate(link, background_image_path, color, quality)
