@@ -19,7 +19,7 @@ class EnhancedQR:
     @staticmethod
     def generate(content=default_url, image_path=default_embedded_image_path, back_color=default_back_color):
         print('Generating: ', content)
-        qr = qrcode.QRCode(version=40, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
+        qr = qrcode.QRCode(version=30, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
         qr.add_data(content)
         qr.make()
         img = qr.make_image(image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer(),
