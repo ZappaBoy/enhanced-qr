@@ -23,7 +23,7 @@ class EnhancedQR:
                  back_color: Union[tuple[int, int, int], tuple[int, int, int, int]] = default_back_color,
                  version: int = default_quality):
         print('Generating: ', content)
-        qr = qrcode.QRCode(version=quality, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
+        qr = qrcode.QRCode(version=version, error_correction=qrcode.constants.ERROR_CORRECT_H, border=4)
         qr.add_data(content)
         qr.make()
         img = qr.make_image(image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer(),
