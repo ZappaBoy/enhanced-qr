@@ -57,7 +57,6 @@ if __name__ == '__main__':
                         help='Background color (RGB) or (RGBA)')
     parser.add_argument('--quality', type=int, required=False, default=default_quality,
                         help='Quality of QR code (1-40)')
-
     parser.add_argument('--all-qualities', type=bool, required=False, default=False,
                         action=argparse.BooleanOptionalAction,
                         help='Generate all quality of QR code (1-40)')
@@ -69,7 +68,7 @@ if __name__ == '__main__':
     quality = args.quality if 1 <= args.quality <= 40 else default_quality
 
     enhanced_qr = EnhancedQR()
-    if not args.all_quality:
+    if not args.all_qualities:
         enhanced_qr.generate(link, background_image_path, color, quality)
     else:
         for i in range(1, 41):
