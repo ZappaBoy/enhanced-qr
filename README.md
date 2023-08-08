@@ -44,6 +44,12 @@ You can adjust the quality of the QR code by passing a value from 1 to 40 to `--
 python enhanced_qr.py --quality 30
 ```
 
+Or generate all the qualities using `--all-qualities`:
+
+``` shell
+python enhanced_qr.py --all-qualities
+```
+
 ## Options
 
 ```shell
